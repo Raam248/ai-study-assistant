@@ -7,7 +7,7 @@ def main():
     while True:
         chat = input(">>> ")
         
-        if chat == "exit":
+        if chat == "bye":
             print("Thank you for using the chatbot! Goodbye!")
             break
 
@@ -17,14 +17,6 @@ def main():
 
         context = [
     {"role": "system", "content": "You are a helpful assistant."},] + messages[-10:]
-
-        
-#print the messages sent to the api,only for debugging purposes
-#TODO: remove this after debugging
-        print("MESSAGES SENT TO API:")
-        for m in context:
-            print(m)
-        print("-"*50)
 
         response = api.get_response(context)
 

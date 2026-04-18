@@ -1,5 +1,9 @@
-def get_response(messages):
-    for msg in reversed(messages):
-        if msg["role"] == "user":
-            return msg["content"]
-    return "No user message found"
+import ollama
+
+def get_response(context):
+    response = ollama.chat(
+        model='llama3',
+        messages= context
+    )
+
+    return response['message']['content']

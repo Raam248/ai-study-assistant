@@ -1,0 +1,150 @@
+# AI Study Assistant (CLI, Local LLM, Memory-Enabled)
+
+## 🚀 Overview
+
+This project is a **command-line AI chatbot** built using a local LLM via Ollama.
+It maintains **conversation memory across sessions** using JSON storage and simulates how real chat systems (like ChatGPT) manage context.
+
+---
+
+## ✨ Features
+
+* 💬 Interactive CLI chatbot
+* 🧠 Context-aware responses (uses recent conversation history)
+* 💾 Persistent memory using JSON (remembers across restarts)
+* ⚡ Local LLM integration (Ollama – no API cost)
+* 🧩 Modular structure (main, API, memory separation)
+
+---
+
+## 🏗️ Project Structure
+
+```
+project/
+│
+├── main.py          # Runs chatbot loop and handles interaction
+├── api.py           # Handles communication with Ollama
+├── memory.py        # Load & save conversation history
+├── memory.json      # Stores chat history
+└── README.md        # Project documentation
+```
+
+---
+
+## ⚙️ How It Works
+
+1. User inputs a message
+2. Previous messages are loaded from `memory.json`
+3. Last N messages are selected as context
+4. Context is sent to the LLM via Ollama
+5. Response is received and stored
+6. Updated conversation is saved back to JSON
+
+---
+
+## 🔄 Data Flow
+
+```
+User Input → Load Memory → Add Input → Slice Context → LLM (Ollama)
+→ Get Response → Save Memory → Display Output
+```
+
+---
+
+## 🧠 Memory System
+
+* Stores messages as:
+
+```json
+{"role": "user", "content": "Hello"}
+{"role": "assistant", "content": "Hi!"}
+```
+
+* Full history is stored
+* Only recent messages (last N) are used as context
+
+---
+
+## 🛠️ Setup Instructions
+
+### 1. Install Ollama
+
+Download and install from: https://ollama.com
+
+### 2. Pull a model
+
+```bash
+ollama pull llama3
+```
+
+### 3. Install Python dependency
+
+```bash
+pip install ollama
+```
+
+### 4. Run the chatbot
+
+```bash
+python main.py
+```
+
+---
+
+## 🧪 Example Usage
+
+```
+You: hi
+Bot: Hello!
+
+You: my name is max
+Bot: Nice to meet you, Max!
+
+(restart program)
+
+You: what is my name?
+Bot: Your name is Max
+```
+
+---
+
+## 🎯 Key Learnings
+
+* Handling state in stateless systems (LLMs)
+* JSON-based persistence
+* Context window management
+* Modular backend design
+* Integrating local LLMs with Python
+
+---
+
+## ⚠️ Limitations
+
+* CLI only (no UI yet)
+* Context limited to last N messages
+* No advanced memory summarization
+
+---
+
+## 🚧 Future Improvements (Optional)
+
+* Web UI (Streamlit / Flask)
+* Smart memory (summarization, embeddings)
+* User personalization
+* Deployment
+
+---
+
+## 📌 Conclusion
+
+This project demonstrates how to build a **real-world AI system pipeline**:
+
+* Input → Context → LLM → Memory → Output
+
+It replicates the core mechanics behind modern AI chat systems in a simplified, local setup.
+
+---
+
+## 👤 Author
+
+Built as part of hands-on learning in AI systems and backend logic.
