@@ -9,6 +9,7 @@ def main():
         
         if chat == "bye":
             print("Thank you for using the chatbot! Goodbye!")
+            print("-"*50)
             break
 
         messages = memory.load_memory()
@@ -25,6 +26,7 @@ def main():
         memory.save_memory(messages)
 
         print(">>>", response)
+
 
 if __name__ == "__main__":
     main()
